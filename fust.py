@@ -39,8 +39,7 @@ with st.sidebar:
         if not uploadedpdf or not web_link:
             st.error('Upload any pdf or link to start extraction')    
         else:        
-            if st.session_state.button==False:
-                st.session_state.button=True
+            st.session_state.button=True
 
 
 if st.session_state.button==True:
