@@ -45,7 +45,8 @@ config_=types.GenerateContentConfig(temperature=0.6,system_instruction='''You ar
     i want you to analyze those list chunks and give a clear comprehensive output for the user, Let the output be not more than 3 sentences of text,ignore /n and \\n as sometime they may come from pdf.''')
 
 flash_35 = "gemini-3.5-flash-lite"
-flash_15 = "gemini-1.5-flash"
+flash_25L = "gemini-2.5-flash-lite"
+# flash_25 = "gemini-2.5-flash"
 
 def reform_question(userquestion:str,chat_history:list)->str:
     message = f'''I want you to reform this new question into an understandable standalone searchable question for a 
@@ -58,7 +59,7 @@ def reform_question(userquestion:str,chat_history:list)->str:
         return reformed_question.text
     except Exception as e:
         if "503" in str(e):
-            stepney_reform_chat = client.chats.create(model=flash_15)
+            stepney_reform_chat = client.chats.create(model=flash_25L)
             stephneys_reformed_question = stepney_reform_chat.send_message(message=[message])
             return stephneys_reformed_question.text
         else:
@@ -86,7 +87,7 @@ def query_with_llm(user_query:str,vectordb:list[float],semanted:list,chat_histor
     except Exception as e:
         if "503" in str(e):
             print("503 Error occured, cycling the stepney model")
-            stepney_chat = client.chats.create(model=flash_15,config=config_)
+            stepney_chat = client.chats.create(model=flash_25L,config=config_)
             stepney_responce = stepney_chat.send_message(message=messages).text
             chat_history.append({'user': query, 'bot': stepney_responce})
             page_content_lst.clear()
