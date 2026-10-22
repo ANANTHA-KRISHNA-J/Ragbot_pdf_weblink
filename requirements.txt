@@ -4,6 +4,7 @@ langchain-experimental
 langchain-huggingface
 google-genai
 pymupdf
+rank_bm25
 faiss-cpu
 sentence-transformers
 python-dotenv
