@@ -36,10 +36,11 @@ with st.sidebar:
     submit_button = st.button(label="Click to run extraction",type="primary")
 
     if submit_button:
-        if not uploadedpdf or not web_link:
+        if not uploadedpdf and not web_link:
             st.error('Upload any pdf or link to start extraction')    
         else:        
-            st.session_state.button=True
+            if st.session_state.button==False:
+                st.session_state.button=True
 
 
 if st.session_state.button==True:
