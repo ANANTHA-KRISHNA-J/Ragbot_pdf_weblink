@@ -62,7 +62,7 @@ def reform_question(userquestion:str,chat_history:list)->str:
             stephneys_reformed_question = stepney_reform_chat.send_message(message=[message])
             return stephneys_reformed_question.text
         else:
-            return 'Unexpected Error Occured'
+            return f'Unexpected Error Occured {e}'
 
 def query_with_llm(user_query:str,vectordb:list[float],semanted:list,chat_history)->str:
     try:
@@ -92,7 +92,7 @@ def query_with_llm(user_query:str,vectordb:list[float],semanted:list,chat_histor
             page_content_lst.clear()
             return stepney_responce
         else:
-            return 'Unexpected Error Occured'
+            return f'Unexpected Error Occured {e}'
 #chat st session
 def webloader(link:str):
     webload = WebBaseLoader(web_path=link,verify_ssl=True,requests_per_second=3,raise_for_status=1)
