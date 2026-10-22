@@ -17,7 +17,7 @@ def gpt_alike(prompt,real_vector_db,seman_chunker):
     response = query_with_llm(prompt,real_vector_db,seman_chunker,st.session_state.chat_history)
     for words in response.split(" "):
         yield words + " "
-        time.sleep(0.03)
+        time.sleep(0.06)
 
 st.title('Chat with pdf/Webpage')
 
